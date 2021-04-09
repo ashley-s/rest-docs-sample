@@ -34,7 +34,7 @@ class HelloControllerTest {
     void testHello() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/payroll/hello"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.TEXT_PLAIN))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().string("hello world"));
     }
 
