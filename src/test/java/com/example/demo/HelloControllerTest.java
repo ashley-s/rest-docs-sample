@@ -6,6 +6,7 @@ import org.springframework.boot.test.autoconfigure.restdocs.RestDocsMockMvcConfi
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.restdocs.operation.preprocess.Preprocessors;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -32,7 +33,9 @@ class HelloControllerTest {
     @Test
     void testHello() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/payroll/hello"))
+                .andExpect(status().isBadRequest()).andExpect(status().isNotFound())
                 .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().string("hello world"));
     }
 
